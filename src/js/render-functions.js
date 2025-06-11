@@ -34,9 +34,9 @@ export function clearGallery() {
 }
 
 export function showLoader() {
-  document.body.classList.add('loading'); // or show a loader element
+  document.body.classList.add('loading');
 }
 
 export function hideLoader() {
-  document.body.classList.remove('loading'); // or hide the loader element
+  document.body.classList.remove('loading');
 }
