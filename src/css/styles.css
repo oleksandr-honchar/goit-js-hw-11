@@ -78,17 +78,28 @@ button:hover {
   border-radius: 0px;
   overflow: hidden;
   background: #fff;
+  width: 360px;
+  height: 200px;
 }
 
 .gallery-image {
   width: 360px;
-  height: 200px;
+  height: 152px;
   object-fit: cover;
 }
 
 .info {
   padding: 4px 20px;
   display: flex;
-  font-size: 14px;
-  background-color: #f8f8f8;
+  gap: 28px;
+  align-items: center;
+  font-size: 12px;
+  background-color: #fff;
+  width: 360px;
+  height: 48px;
+  border-bottom: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-right: 1px solid #808080;
+  width: 360px;
+  height: 48px;
 }
