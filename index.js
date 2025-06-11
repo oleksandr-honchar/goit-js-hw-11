@@ -3,10 +3,10 @@ import{a as f,S as m,i as n}from"./assets/vendor-BLPZKqeQ.js";(function(){const 
         <a class="gallery-link" href="${a}">
           <img class="gallery-image" src="${o}" alt="${e}" loading="lazy" />
           <div class="info">
-          <p><b>Likes</b><br> ${t}</p>
-          <p><b>Views</b><br> ${i}</p>
-          <p><b>Comments</b><br> ${u}</p>
-          <p><b>Downloads</b><br> ${d}</p>
+          <p><b>Likes</b> ${t}</p>
+          <p><b>Views</b> ${i}</p>
+          <p><b>Comments</b> ${u}</p>
+          <p><b>Downloads</b> ${d}</p>
         </div>
         </a>
       </li>`).join("");c.innerHTML=r,l?l.refresh():l=new m(".gallery a")}function b(){c.innerHTML=""}function L(){document.body.classList.add("loading")}function v(){document.body.classList.remove("loading")}const w=document.querySelector(".form");w.addEventListener("submit",async s=>{s.preventDefault();const r=s.target.elements["search-text"].value.trim();if(!r){n.warning({title:"Empty field",message:"Please enter a search term.",position:"topRight"});return}b(),L();try{const o=await y(r);if(!o.hits.length){n.error({title:"No results",message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight"});return}h(o.hits)}catch(o){n.error({title:"Error",message:o.message,position:"topRight"})}finally{v()}});
