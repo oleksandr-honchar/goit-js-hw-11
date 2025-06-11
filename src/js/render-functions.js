@@ -19,13 +19,13 @@ export function createGallery(images) {
       <li class="gallery-item">
         <a class="gallery-link" href="${largeImageURL}">
           <img class="gallery-image" src="${webformatURL}" alt="${tags}" loading="lazy" />
-        </a>
-        <div class="info">
+          <div class="info">
           <p><b>Likes</b><br> ${likes}</p>
           <p><b>Views</b><br> ${views}</p>
           <p><b>Comments</b><br> ${comments}</p>
           <p><b>Downloads</b><br> ${downloads}</p>
         </div>
+        </a>
       </li>`
     )
     .join('');
