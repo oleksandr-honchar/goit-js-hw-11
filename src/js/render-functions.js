@@ -1,40 +1,42 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-const galleryContainer = document.querySelector('.gallery');
-const loader = document.querySelector('.loader');
+const galleryContainer = document.createElement('ul');
+galleryContainer.className = 'gallery';
+document.querySelector('main').appendChild(galleryContainer);
 
-const lightbox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});
+let lightbox;
 
-// Створення галереї
 export function createGallery(images) {
   const markup = images
     .map(
-      ({ webformatURL, largeImageURL, tags }) => `
-      <a class="gallery-item" href="${largeImageURL}">
-        <img src="${webformatURL}" alt="${tags}" loading="lazy" />
-      </a>`
+      img => `
+      <li>
+        <a href="${img.largeImageURL}">
+          <img src="${img.webformatURL}" alt="${img.tags}" loading="lazy"/>
+        </a>
+      </li>
+    `
     )
     .join('');
 
-  galleryContainer.insertAdjacentHTML('beforeend', markup);
-  lightbox.refresh();
+  galleryContainer.innerHTML = markup;
+
+  if (!lightbox) {
+    lightbox = new SimpleLightbox('.gallery a');
+  } else {
+    lightbox.refresh();
+  }
 }
 
-// Очищення галереї
 export function clearGallery() {
   galleryContainer.innerHTML = '';
 }
 
-// Показати лоадер
 export function showLoader() {
-  loader.classList.add('visible');
+  document.body.classList.add('loading'); // or show a loader element
 }
 
-// Сховати лоадер
 export function hideLoader() {
-  loader.classList.remove('visible');
+  document.body.classList.remove('loading'); // or hide the loader element
 }

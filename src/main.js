@@ -9,20 +9,12 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const form = document.querySelector('.form');
-const input = form.querySelector('input[name="search-text"]');
 
 form.addEventListener('submit', async e => {
   e.preventDefault();
-  const query = input.value.trim();
 
-  if (!query) {
-    iziToast.warning({
-      title: 'Empty query',
-      message: 'Please enter a search term.',
-      position: 'topRight',
-    });
-    return;
-  }
+  const query = e.target.elements['search-text'].value.trim();
+  if (!query) return;
 
   clearGallery();
   showLoader();
@@ -30,7 +22,7 @@ form.addEventListener('submit', async e => {
   try {
     const data = await getImagesByQuery(query);
 
-    if (!data.hits || data.hits.length === 0) {
+    if (!data.hits.length) {
       iziToast.error({
         title: 'No results',
         message: 'Try a different search term.',
@@ -43,7 +35,7 @@ form.addEventListener('submit', async e => {
   } catch (error) {
     iziToast.error({
       title: 'Error',
-      message: 'Failed to load images.',
+      message: error.message,
       position: 'topRight',
     });
   } finally {
