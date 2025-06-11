@@ -1,11 +1,52 @@
-// Описаний у документації
+import { getImagesByQuery } from './pixabay-api.js';
+import {
+  createGallery,
+  clearGallery,
+  showLoader,
+  hideLoader,
+} from './render-functions.js';
 import iziToast from 'izitoast';
-// Додатковий імпорт стилів
 import 'izitoast/dist/css/iziToast.min.css';
 
-import fetchData from './js/pixabay-api.js';
-import moduleName from './js/render-functions.js';
+const form = document.querySelector('.form');
+const input = form.querySelector('input[name="search-text"]');
 
-import createGallery from './js/render-functions.js';
-import clearGallery from './js/render-functions.js';
-import showLoader from './js/render-functions.js';
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const query = input.value.trim();
+
+  if (!query) {
+    iziToast.warning({
+      title: 'Empty query',
+      message: 'Please enter a search term.',
+      position: 'topRight',
+    });
+    return;
+  }
+
+  clearGallery();
+  showLoader();
+
+  try {
+    const data = await getImagesByQuery(query);
+
+    if (!data.hits || data.hits.length === 0) {
+      iziToast.error({
+        title: 'No results',
+        message: 'Try a different search term.',
+        position: 'topRight',
+      });
+      return;
+    }
+
+    createGallery(data.hits);
+  } catch (error) {
+    iziToast.error({
+      title: 'Error',
+      message: 'Failed to load images.',
+      position: 'topRight',
+    });
+  } finally {
+    hideLoader();
+  }
+});
