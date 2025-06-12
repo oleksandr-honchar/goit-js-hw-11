@@ -4,8 +4,8 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 export const LOADER = [
   {
     id: 'sndWveBr',
-    html: `<span class="loader"></span>`,
-    css: `.loader {
+    html: `<div class="loader-wrapper"></div>`,
+    css: `.loader-wrapper {
     display: block;
     margin: 0 auto;
   position: relative;
