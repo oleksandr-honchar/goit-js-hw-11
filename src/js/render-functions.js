@@ -77,7 +77,7 @@ export function clearGallery() {
 }
 
 export function showLoader() {
-  const loaderWrapper = document.querySelector('.loader');
+  const loaderWrapper = document.querySelector('.loader-wrapper');
   const { html, css } = LOADER[0];
 
   loaderWrapper.innerHTML = html;
@@ -90,7 +90,7 @@ export function showLoader() {
 }
 
 export function hideLoader() {
-  const loaderWrapper = document.querySelector('.loader');
+  const loaderWrapper = document.querySelector('.loader-wrapper');
   loaderWrapper.innerHTML = '';
   loaderWrapper.style.display = 'none';
 }
